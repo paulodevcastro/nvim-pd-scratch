@@ -2,22 +2,37 @@
 -- https://github.com/nvim-telescope/telescope.nvim
 
 return {
-  "nvim-telescope/telescope.nvim",
-  tag = "0.1.8",
-  dependencies = { "nvim-lua/plenary.nvim" },
-  config = function()
-    local builtin = require("telescope.builtin")
-    -- set a vim motion to <Space> + f + f to search for files by their names
-    vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[F]ind [F]iles" })
-    -- set a vim motion to <Space> + f + g to search for files based on the text inside of them
-    vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "[F]ind by [G]rep" })
-    -- set a vim motion to <Space> + f + d to search for Code Diagnostics in the current project
-    vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "[F]ind [D]iagnostics" })
-    -- set a vim motion to <Space> + f + r to resume the previous search
-    vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "[F]inder [R]esume" })
-    -- set a vim motion to <Space> + f + . to search for Recent Files
-    vim.keymap.set("n", "<leader>f.", builtin.oldfiles, { desc = '[F]ind Recent Files ("." for repeat)' })
-    -- set a vim motion to <Space> + f + b to search Open Buffers
-    vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "[F]ind Existing [B]uffers" })
-  end
+  {
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.8",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      local builtin = require("telescope.builtin")
+      -- set a vim motion to <space> + f + f to search for files by their names
+      vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[f]ind [f]iles" })
+      -- set a vim motion to <space> + f + g to search for files based on the text inside of them
+      vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "[f]ind by [g]rep" })
+      -- set a vim motion to <space> + f + d to search for code diagnostics in the current project
+      vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "[f]ind [d]iagnostics" })
+      -- set a vim motion to <space> + f + r to resume the previous search
+      vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "[f]inder [r]esume" })
+      -- set a vim motion to <space> + f + . to search for recent files
+      vim.keymap.set("n", "<leader>f.", builtin.oldfiles, { desc = '[f]ind recent files ("." for repeat)' })
+      -- set a vim motion to <space> + f + b to search open buffers
+      vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "[f]ind existing [b]uffers" })
+    end,
+  },
+  {
+    "nvim-telescope/telescope-ui-select.nvim",
+    config = function()
+			require("telescope").setup({
+				extensions = {
+					["ui-select"] = {
+						require("telescope.themes").get_dropdown({}),
+					},
+				},
+			})
+			require("telescope").load_extension("ui-select")
+		end,
+  },
 }

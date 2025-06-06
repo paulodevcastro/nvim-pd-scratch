@@ -25,4 +25,4 @@ vim.keymap.set("v", ">", ">gv", { desc = "Indent right in visual mode" })
 vim.cmd([[ set guicursor= ]])
 
 -- Colocar a paleta de cores do vim como padrão (Vintage Like)
-vim.cmd('colorscheme vim')
+vim.cmd('colorscheme default')
